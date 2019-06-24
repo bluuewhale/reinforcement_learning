@@ -1,7 +1,6 @@
 #아래의 코드에서 많은 도움을 받았습니다.
 # - 모두의 연구소: 이영무님 TicTacToe with MCTS : http://www.modulabs.co.kr/RL_library/7984
 # - MCTS python Implementation : http://mcts.ai/code/python.html
-
 from math import *
 import random
 import copy
@@ -60,15 +59,15 @@ class Gomoku:
             return 0.0 # draw
 
     def check_state(self):
-        winning_cases = [[(x, y), (x+1, y), (x+2, y), (x+3, y)] for x in range(self.k-3) for y in range(self.k)] # 세로로 4개를 채워서 이기는 경우
-        winning_cases += [[(x, y), (x, y+1), (x, y+2), (x, y+3)] for x in range(self.k) for y in range(self.k-3)] # 가로로 4개를 채워서 이기는 경우
-        winning_cases += [[(x, y), (x-1, y+1), (x-2, y+2), (x-3, y+3)] for x in range(3, self.k) for y in range(0, self.k-3)] # 우상향 대각선으로 4개를 채워서 이기는 경우
-        winning_cases += [[(x, y), (x+1, y+1), (x+2, y+2), (x+3, y+3)] for x in range(0, self.k-3) for y in range(0, self.k-3)] # 좌상향 대각선으로 4개를 채워서 이기는 경우
+        winning_cases = [[(x, y), (x+1, y), (x+2, y), (x+3, y), (x+4, y)] for x in range(self.k-4) for y in range(self.k)] # 세로로 5개를 채워서 이기는 경우
+        winning_cases += [[(x, y), (x, y+1), (x, y+2), (x, y+3), (x, y+4)] for x in range(self.k) for y in range(self.k-4)] # 가로로 5개를 채워서 이기는 경우
+        winning_cases += [[(x, y), (x-1, y+1), (x-2, y+2), (x-3, y+3), (x-4, y+4)] for x in range(4, self.k) for y in range(0, self.k-4)] # 우상향 대각선으로 5개를 채워서 이기는 경우
+        winning_cases += [[(x, y), (x+1, y+1), (x+2, y+2), (x+3, y+3), (x+4, y+4)] for x in range(0, self.k-4) for y in range(0, self.k-4)] # 좌상향 대각선으로 5개를 채워서 이기는 경우
 
         for grids in winning_cases:
-            (x1, y1), (x2, y2), (x3, y3), (x4, y4) = grids
+            (x1, y1), (x2, y2), (x3, y3), (x4, y4), (x5, y5) = grids
 
-            if self.state[x1][y1] == self.state[x2][y2] == self.state[x3][y3] == self.state[x4][y4]: # 3줄을 완성한 경우
+            if self.state[x1][y1] == self.state[x2][y2] == self.state[x3][y3] == self.state[x4][y4] == self.state[x5][y5]: # 3줄을 완성한 경우
                 if self.state[x1][y1] == 1:
                     return 1 # 1번 플레이어가 승리
 

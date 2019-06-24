@@ -2,7 +2,7 @@ from gomoku import *
 from MCTS import *
 
 def play_game():
-    state = Gomoku(k=7)
+    state = Gomoku(k=9)
     print(state)
 
     # 게임이 끝날 때까지
